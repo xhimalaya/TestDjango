@@ -8,7 +8,7 @@ def loginpage(request):
 		if request.user.is_authenticated:
 			return redirect('/allrequest')
 		else:
-			return render()
+			return render(request, "loginpage.html")
 	elif request.method == "POST":
 		if request.user.is_authenticated:
 			return redirect('/allrequest')
@@ -40,7 +40,7 @@ def requestpage(request):
 
 def allrequestpage(request):
 	if request.method == "GET":
-		return render(, context={'requests': RequestList.objects.all()})
+		return render(request, "allrequests.html", context={'requests': RequestList.objects.all()})
 	else:
 		return redirect('/allrequest')
 

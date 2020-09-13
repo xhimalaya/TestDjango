@@ -26,7 +26,7 @@ def loginpage(request):
 
 def requestpage(request):
 	if request.method == "GET":
-		return render()
+		return render(request)
 	elif request.method == "POST" and all(list(map(lambda x:x in request.POST and request.POST[x] != '', ['reqtype', 'reqdesc', 'city', 'state', 'pincode', 'altmobile', 'ccode']))):
 		req = RequestList(reqtype=request.POST['reqtype'], reqdesc=request.POST['reqdesc'], city=request.POST['city'], state=request.POST['state'], pincode=request.POST['pincode'], countrycode=request.POST['ccode'], mobileno=request.POST['altmobile'])
 		try:
@@ -36,7 +36,7 @@ def requestpage(request):
 		except ValidationError as e:
 			return HttpResponse("<br>".join(e.messages))
 	else:
-		return redirect('/request')
+		return redirect('/new')
 
 def allrequestpage(request):
 	if request.method == "GET":

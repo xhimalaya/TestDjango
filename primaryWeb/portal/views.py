@@ -40,9 +40,9 @@ def requestpage(request):
 
 def allrequestpage(request):
 	if request.method == "GET":
-		return render(request, "allrequests.html", context={'requests': RequestList.objects.all()})
+		return render(request, "allrequests.html", context={'reqs': RequestList.objects.all()})
 	else:
-		return redirect('/allrequest')
+		return redirect('/all')
 
 def updatepage(request):
 	if request.method == "GET":

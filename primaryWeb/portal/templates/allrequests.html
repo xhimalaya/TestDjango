@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST</title>
+</head>
+<body>
+	<table style="width:100%">
+		<tr>
+			<th>Request ID</th>
+			<th>Request Type</th>
+			<th>Request Desc</th>
+			<th>Request Date</th>
+			<th>Status</th>
+		</tr>
+		{% for r in reqs %}
+		<tr>
+			<td>r.id</td>
+			<td>r.reqtype</td>
+			<td>r.reqdesc</td>
+			<td>r.date</td>
+			<td>r.status</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<br><br>
+	<a href="/new">
+</body>
+</html>

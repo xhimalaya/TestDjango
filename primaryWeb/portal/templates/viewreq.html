@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST</title>
+</head>
+<body>
+		<label>Request Type</label>
+		<br>
+		<input type="text" value="{{ r.reqtype }}" disabled>
+		<br>
+		<br>
+		<label>Request Desc.</label>
+		<br>
+		<textarea disabled>{{r.reqdesc}}</textarea>
+		<br>
+		<br>
+		<label>City</label>
+		<input type="text" name="city" value={{r.city}} disabled>
+		<br>
+		<label>State</label>
+		<input type="text" name="state" value={{r.state}} disabled>
+		<br>
+		<label>Pincode</label>
+		<input type="text" name="pincode" value={{r.pincode}} disabled>
+		<br>
+		<label>Alt. Mobile</label>
+		<input type="text" name="ccode" value={{r.countrycode}} disabled>
+		<input type="text" name="altmobile" value={{r.mobileno}} disabled>
+		<br>
+		<label>Status</label>
+		<input type="text" name="status" value={{r.status}} disabled>
+		<br>
+		<label>Remarks</label>
+		<input type="text" name="remarks" value={{r.remarks}} disabled>
+		<br>
+		<label>Updated by</label>
+		<input type="text" name="remarks" value={{r.updatedby}} disabled>
+</body>
+</html>

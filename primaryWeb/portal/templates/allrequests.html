@@ -11,18 +11,22 @@
 			<th>Request Desc</th>
 			<th>Request Date</th>
 			<th>Status</th>
+			<th>Actions</th>
 		</tr>
 		{% for r in reqs %}
 		<tr>
-			<td>r.id</td>
-			<td>r.reqtype</td>
-			<td>r.reqdesc</td>
-			<td>r.date</td>
-			<td>r.status</td>
+			<td style="text-align: center;">{{r.id}}</td>
+			<td style="text-align: center;">{{r.reqtype}}</td>
+			<td style="text-align: center;">{{r.reqdesc}}</td>
+			<td style="text-align: center;">{{r.reqdate}}</td>
+			<td style="text-align: center;">{{r.status}}</td>
+			<td style="text-align: center;"><a href="/req?id={{r.id}}">View</a><br><a href="/update?id={{r.id}}">Update</a></td>
 		</tr>
 		{% endfor %}
 	</table>
 	<br><br>
-	<a href="/new">
+	<center>
+		<a href="/new" style="text-decoration: none;">New Request</a>
+	</center>
 </body>
 </html>

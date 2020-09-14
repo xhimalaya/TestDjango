@@ -1,3 +1,6 @@
+from .models import *
+
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -26,9 +29,9 @@ def loginpage(request):
 
 def requestpage(request):
 	if request.method == "GET":
-		return render(request)
+		return render(request, "newrequest.html")
 	elif request.method == "POST" and all(list(map(lambda x:x in request.POST and request.POST[x] != '', ['reqtype', 'reqdesc', 'city', 'state', 'pincode', 'altmobile', 'ccode']))):
-		req = RequestList(reqtype=request.POST['reqtype'], reqdesc=request.POST['reqdesc'], city=request.POST['city'], state=request.POST['state'], pincode=request.POST['pincode'], countrycode=request.POST['ccode'], mobileno=request.POST['altmobile'])
+		req = RequestList(reqtype=request.POST['reqtype'], reqdesc=request.POST['reqdesc'], city=request.POST['city'], state=request.POST['state'], pincode=request.POST['pincode'], countrycode=request.POST['ccode'], mobileno=request.POST['altmobile'], status="PENDING", )
 		try:
 			req.full_clean()
 			req.save()
@@ -45,15 +48,35 @@ def allrequestpage(request):
 		return redirect('/all')
 
 def updatepage(request):
-	if request.method == "GET":
-		return render()
-	elif request.method == "POST":
-		return render()
+	if request.method == "GET" and 'id' in request.GET and request.GET['id']!="" and str(request.GET['id']).isdigit():
+		if request.user.is_authenticated:
+			if request.GET['id'] in [str(_.id) for _ in RequestList.objects.all()]:
+				return render(request, "updatereq.html", {'r': RequestList.objects.all().get(id=int(request.GET['id']))})
+			else:
+				return HttpResponse("Invalid Request ID")
+		else:
+			return redirect("/login")
+	elif request.method == "POST" and all(list(map(lambda x:x in request.POST and request.POST[x] != '', ['status', 'remarks']))) and 'id' in request.GET and request.GET['id']!="" and str(request.GET['id']).isdigit():
+		if request.user.is_authenticated:
+			if request.GET['id'] in [str(_.id) for _ in RequestList.objects.all()]:
+				r = RequestList.objects.all().get(id=int(request.GET['id']))
+				r.status = request.POST['status']
+				r.remarks = request.POST['remarks']
+				r.updatedby = request.user.username
+				r.save()
+				return HttpResponse("Request Updated")
+			else:
+				return HttpResponse("Invalid Request ID")
+		else:
+			return redirect("/login")
 	else:
-		return redirect('/update')
+		return redirect('/all')
 
 def viewrequestpage(request):
-	if request.method == "GET":
-		return render()
+	if request.method == "GET" and 'id' in request.GET and request.GET['id']!="" and str(request.GET['id']).isdigit():
+		if request.GET['id'] in [str(_.id) for _ in RequestList.objects.all()]:
+			return render(request, "viewreq.html", {'r': RequestList.objects.all().get(id=int(request.GET['id']))})
+		else:
+			return HttpResponse("Invalid Request ID")
 	else:
-		return redirect('/view')
+		return redirect('/all')

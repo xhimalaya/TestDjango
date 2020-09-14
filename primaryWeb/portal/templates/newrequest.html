@@ -4,8 +4,43 @@
 	<title>TEST</title>
 </head>
 <body>
-	<form method="POST">
+	<form method="POST" id="reqform">
 		{% csrf_token %}
+		<label>Request Type</label>
+		<br>
+		<input type="checkbox" name="reqtype" value="Deep Cleaning">
+		<label>Deep Cleaning</label>
+		<br>
+		<input type="checkbox" name="reqtype" value="Plumbing">
+		<label>Plumbing</label>
+		<br>
+		<input type="checkbox" name="reqtype" value="Painting">
+		<label>Painting</label>
+		<br>
+		<input type="checkbox" name="reqtype" value="Electrical">
+		<label>Electrical</label>
+		<br>
+		<br>
+		<label>Request Desc.</label>
+		<br>
+		<textarea name="reqdesc" form="reqform"></textarea>
+		<br>
+		<br>
+		<label>City</label>
+		<input type="text" name="city">
+		<br>
+		<label>State</label>
+		<input type="text" name="state">
+		<br>
+		<label>Pincode</label>
+		<input type="text" name="pincode">
+		<br>
+		<label>Alt. Mobile</label>
+		<input type="text" name="ccode" placeholder="country code">
+		<input type="text" name="altmobile" placeholder="mobile no">
+		<br>
+		<br>
+		<button type="submit">Submit</button>
 	</form>
 </body>
 </html>

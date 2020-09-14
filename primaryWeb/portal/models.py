@@ -21,5 +21,6 @@ class RequestList(models.Model):
 	pincode = models.CharField(max_length=6, verbose_name="Pincode", null=False, blank=False)
 	countrycode = models.CharField(max_length=3, verbose_name="Country Code", null=False, blank=False)
 	mobileno = models.CharField(max_length=10, verbose_name="Mobile No.", null=False, blank=False)
-	remarks = models.TextField(verbose_name="Remarks", null=False, blank=False)
+	remarks = models.TextField(verbose_name="Remarks", null=True, blank=True)
 	status = models.CharField(max_length=20, verbose_name="Request Status", null=False, blank=False)
+	updatedby = models.EmailField(max_length=40, verbose_name="Updated By", null=True, blank=True)

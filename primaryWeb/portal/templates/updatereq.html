@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEST</title>
+</head>
+<body>
+	<form method="POST">
+		{% csrf_token %}
+		<label>Request Type</label>
+		<br>
+		<input type="text" value="{{ r.reqtype }}" disabled>
+		<br>
+		<br>
+		<label>Request Desc.</label>
+		<br>
+		<textarea disabled>{{r.reqdesc}}</textarea>
+		<br>
+		<br>
+		<label>City</label>
+		<input type="text" value={{r.city}} disabled>
+		<br>
+		<label>State</label>
+		<input type="text" value={{r.state}} disabled>
+		<br>
+		<label>Pincode</label>
+		<input type="text" value={{r.pincode}} disabled>
+		<br>
+		<label>Alt. Mobile</label>
+		<input type="text" value={{r.countrycode}} disabled>
+		<input type="text" value={{r.mobileno}} disabled>
+		<br>
+		<label>Status</label>
+		<select name="status">
+			<option value="Pending">Pending</option>
+			<option value="In Progress">In Progress</option>
+			<option value="Completed">Completed</option>
+		</select>
+		<br>
+		<label>Remarks</label>
+		<input type="text" name="remarks" value={{r.remarks}} disabled>
+		<br>
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>

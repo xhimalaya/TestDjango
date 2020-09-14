@@ -4,5 +4,8 @@ from .views import *
 
 urlpatterns = [
 	path('login', loginpage),
-	path('all', allrequestspage),
+	path('all', allrequestpage),
+	path('new', requestpage),
+	path('req', viewrequestpage),
+	path('update', updatepage)
 ]
